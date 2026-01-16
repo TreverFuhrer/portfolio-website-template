@@ -7,7 +7,7 @@ import { getSiteUrl } from "@/lib/siteUrl";
 import { validateContent } from "@/content/validate";
 
 const siteName = siteConfig.brand.name;
-const defaultDescription = "Short description of your startup";
+const defaultDescription = "Portfolio of Avery Reed, product designer and front-end partner.";
 const sansFont = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",

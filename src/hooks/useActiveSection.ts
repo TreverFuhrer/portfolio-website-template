@@ -51,7 +51,8 @@ export const useActiveSection = (
         return;
       }
 
-      const scrollPosition = window.scrollY + offset;
+      const focusOffset = Math.max(offset, window.innerHeight * 0.35);
+      const scrollPosition = window.scrollY + focusOffset;
       let currentId = offsets[0]?.id ?? "";
 
       offsets.forEach((section) => {
@@ -60,7 +61,12 @@ export const useActiveSection = (
         }
       });
 
-      const nextId = currentId || offsets[0]?.id || "";
+      let nextId = currentId || offsets[0]?.id || "";
+      const pageBottom = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      if (pageBottom >= docHeight - 2) {
+        nextId = offsets[offsets.length - 1]?.id ?? nextId;
+      }
       setActiveId((prev) => (prev === nextId ? prev : nextId));
     };
 

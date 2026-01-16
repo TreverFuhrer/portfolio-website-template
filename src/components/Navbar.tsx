@@ -8,22 +8,15 @@ import { LayoutGroup, motion } from "framer-motion";
 import { LogoIcon, MenuIcon } from "./icons";
 import { Container } from "./layout/Container";
 import { cn } from "./lib/utils";
-import { companyConfig, siteConfig } from "@/content";
+import { portfolioConfig, siteConfig } from "@/content";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
 
-type NavbarProps = {
-  secondaryNav?: Array<{
-    id: string;
-    label: string;
-  }>;
-};
-
-export const Navbar = ({ secondaryNav }: NavbarProps) => {
+export const Navbar = () => {
   const navItems = siteConfig.nav;
   const navbarConfig = siteConfig.navbar;
   const enabledSectionIds = useMemo(
-    () => companyConfig.homepage.sections.filter((section) => section.enabled).map((section) => section.navId),
+    () => portfolioConfig.homepage.sections.filter((section) => section.enabled).map((section) => section.navId),
     [],
   );
   const visibleNavItems = useMemo(
@@ -122,12 +115,13 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
   return (
     <header
       className={cn(
-        navbarConfig.sticky ? "sticky top-0 z-40 border-b border-transparent" : "bg-(--ink)",
+        navbarConfig.sticky ? "sticky top-0 z-40 border-b border-transparent" : "relative z-40",
         navbarConfig.sticky &&
           scrolled &&
           navbarConfig.stickyStyle === "blur-border" &&
-          "bg-[rgba(11,15,26,0.72)] backdrop-blur border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.2)]",
+          "bg-white/80 backdrop-blur border-(--ink)/10 shadow-[0_10px_30px_rgba(15,23,42,0.08)]",
         navbarConfig.sticky && !scrolled && "bg-transparent",
+        !navbarConfig.sticky && "bg-transparent",
         "transition-colors duration-200",
       )}
     >
@@ -136,26 +130,29 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
           {/* Swap this logo and label with your brand. */}
           <Link
             href="/#top"
-            className="relative rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
-            aria-label="Brand"
+            className="flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
+            aria-label={siteConfig.brand.logoLabel}
             onClick={(event) => handleAnchorClick(event, "/#top", "top")}
           >
-            <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,var(--brand-2),var(--brand-1),var(--brand-3))] blur-md" />
-            <LogoIcon className="relative mt-1 h-12 w-12" />
+            <span className="relative flex h-12 w-12 items-center justify-center">
+              <span className="absolute inset-0 rounded-full bg-[linear-gradient(135deg,var(--brand-1),var(--brand-2))] blur-md" />
+              <LogoIcon className="relative h-12 w-12" />
+            </span>
+            <span className="hidden text-sm font-semibold text-(--ink) sm:inline">{siteConfig.brand.name}</span>
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/30 sm:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-(--ink)/20 sm:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
             aria-label="Open menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
-            <MenuIcon className="text-white" />
+            <MenuIcon className="text-(--ink)" />
           </button>
           {/* Keep these links aligned with the section ids below. */}
           <LayoutGroup>
-            <nav className="hidden items-center gap-2 text-white sm:flex" aria-label="Primary">
+            <nav className="hidden items-center gap-2 text-(--ink) sm:flex" aria-label="Primary">
               {visibleNavItems.map((item) => {
                 const anchorId = item.type === "anchor" ? item.sectionId : undefined;
                 const isActive = Boolean(highlightEnabled && anchorId && activeId === anchorId);
@@ -168,8 +165,8 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
                     key={`${item.label}-${item.href}`}
                     href={href}
                     className={cn(
-                      "relative inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)",
-                      isActive ? "text-white" : "text-white/60 hover:text-white",
+                      "relative inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)",
+                      isActive ? "text-(--ink)" : "text-(--ink)/60 hover:text-(--ink)",
                     )}
                     target={target}
                     rel={rel}
@@ -182,7 +179,7 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
                       <>
                         <motion.span
                           layoutId="nav-pill"
-                          className="absolute inset-0 rounded-full bg-white/10"
+                          className="absolute inset-0 rounded-full bg-(--ink)/10"
                           transition={{ type: "spring", stiffness: 500, damping: 40 }}
                         />
                         <motion.span
@@ -192,7 +189,7 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
                         />
                       </>
                     ) : null}
-                    <span className={cn("relative z-10", isActive ? "font-semibold text-white" : "font-medium")}>
+                    <span className={cn("relative z-10", isActive ? "font-semibold text-(--ink)" : "font-medium")}>
                       {item.label}
                     </span>
                   </a>
@@ -200,7 +197,7 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
               })}
               <a
                 href={navbarConfig.primaryCta.href}
-                className="ml-3 inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+                className="ml-3 inline-flex items-center rounded-full bg-(--ink) px-4 py-2 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
                 onClick={
                   primaryCtaSectionId
                     ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)
@@ -216,7 +213,7 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
       {isMenuOpen ? (
         <div
           id="mobile-nav"
-          className="sm:hidden border-t border-white/10 bg-(--ink) backdrop-blur"
+          className="sm:hidden border-t border-(--ink)/10 bg-white/95 backdrop-blur"
           role="dialog"
           aria-label="Mobile navigation"
           ref={mobileMenuRef}
@@ -235,8 +232,8 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
                   key={`${item.label}-${item.href}-mobile`}
                   href={href}
                   className={cn(
-                    "flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)",
-                    isActive ? "bg-white/10 text-white" : "text-white/70 hover:text-white",
+                    "flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)",
+                    isActive ? "bg-(--ink)/10 text-(--ink)" : "text-(--ink)/60 hover:text-(--ink)",
                   )}
                   target={target}
                   rel={rel}
@@ -252,7 +249,7 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
             })}
             <a
               href={navbarConfig.primaryCta.href}
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-white px-4 py-3 text-base font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-(--ink) px-4 py-3 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
               onClick={
                 primaryCtaSectionId
                   ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)
@@ -261,23 +258,6 @@ export const Navbar = ({ secondaryNav }: NavbarProps) => {
             >
               {navbarConfig.primaryCta.label}
             </a>
-            {secondaryNav && secondaryNav.length > 0 ? (
-              <div className="mt-3 border-t border-white/10 pt-3">
-                <div className="px-4 text-xs uppercase tracking-[0.2em] text-white/40">On this page</div>
-                <div className="mt-2 flex flex-wrap gap-2 px-4">
-                  {secondaryNav.map((item) => (
-                    <a
-                      key={`${item.id}-${item.label}`}
-                      href={`#${item.id}`}
-                      className="rounded-full px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
-                      onClick={(event) => handleAnchorClick(event, `#${item.id}`, item.id)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
           </Container>
         </div>
       ) : null}

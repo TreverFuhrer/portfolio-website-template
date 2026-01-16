@@ -2,32 +2,30 @@ import type { SiteConfig } from "./types";
 
 export const siteConfig: SiteConfig = {
   brand: {
-    name: "Company Name",
-    logoLabel: "Brand",
+    name: "Avery Reed",
+    logoLabel: "Avery Reed",
   },
-  siteUrl: "https://example.com",
+  siteUrl: "https://portfolio-template.example",
   nav: [
-    { type: "anchor", label: "Mission", href: "/#mission", sectionId: "mission" },
-    { type: "anchor", label: "Pillars", href: "/#pillars", sectionId: "pillars" },
-    { type: "anchor", label: "Product", href: "/#featured", sectionId: "featured" },
-    { type: "anchor", label: "Vision", href: "/#vision", sectionId: "vision" },
-    { type: "anchor", label: "FAQ", href: "/#faqs", sectionId: "faqs" },
-    { type: "page", label: "App", href: "/product/app" },
+    { type: "anchor", label: "About", href: "/#about", sectionId: "about" },
+    { type: "anchor", label: "Work", href: "/#work", sectionId: "work" },
+    { type: "anchor", label: "Capabilities", href: "/#services", sectionId: "services" },
+    { type: "anchor", label: "Experience", href: "/#experience", sectionId: "experience" },
+    { type: "anchor", label: "Contact", href: "/#contact", sectionId: "contact" },
   ],
   navbar: {
     sticky: true,
     activeSectionHighlight: true,
     stickyStyle: "blur-border",
     primaryCta: {
-      label: "Primary CTA",
-      href: "/#cta",
+      label: "Let's talk",
+      href: "/#contact",
     },
   },
   socials: [
-    { label: "X", href: "https://x.com", icon: "x" },
     { label: "LinkedIn", href: "https://www.linkedin.com", icon: "linkedin" },
-    { label: "Instagram", href: "https://www.instagram.com", icon: "instagram" },
-    { label: "YouTube", href: "https://www.youtube.com", icon: "youtube" },
+    { label: "GitHub", href: "https://github.com", icon: "github" },
+    { label: "Dribbble", href: "https://dribbble.com", icon: "dribbble" },
   ],
 };
 

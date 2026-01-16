@@ -6,54 +6,26 @@ html {
 
 /* Quick theme knobs so you can repaint the whole vibe fast. */
 :root {
-  --ink: #0b0f1a;
-  --surface: #0f172a;
-  --brand-1: #14b8a6;
-  --brand-2: #f97316;
-  --brand-3: #22d3ee;
+  --ink: #0f172a;
+  --paper: #f8f4ee;
+  --surface: #ffffff;
+  --brand-1: #f97316;
+  --brand-2: #0ea5e9;
+  --brand-3: #22c55e;
 }
 
 body {
-  /* Swap the first font name if you want a different feel. */
   font-family: var(--font-sans), "Space Grotesk", "Satoshi", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  background: var(--ink);
-  color: #e2e8f0;
+  background: radial-gradient(circle at top, rgba(255, 247, 237, 0.7), transparent 55%),
+    linear-gradient(180deg, #f8f4ee 0%, #ffffff 45%, #f8fafc 100%);
+  color: var(--ink);
+  color-scheme: light;
 }
 
 /* Helps reduce jank by skipping offscreen rendering until needed. */
 .section-block {
   content-visibility: auto;
   contain-intrinsic-size: 900px;
-}
-
-@keyframes logo-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.logo-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: logo-marquee 25s linear infinite;
-  will-change: transform;
-}
-
-.logo-marquee-track > ul {
-  flex-shrink: 0;
-}
-
-.logo-marquee:hover .logo-marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-marquee-track {
-    animation: none;
-  }
 }
 
 /* Keeps the layout centered even if Tailwind config isn't picked up. */
