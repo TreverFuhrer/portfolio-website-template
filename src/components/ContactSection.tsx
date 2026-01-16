@@ -16,7 +16,7 @@ export const ContactSection = ({ id = "contact" }: ContactSectionProps) => {
   return (
     <MotionSection id={id} variant="staggerChildren" className="section-block relative">
       <Container>
-        <div className="relative overflow-hidden rounded-[32px] border border-(--ink)/10 bg-[linear-gradient(135deg,rgba(251,146,60,0.15),rgba(14,165,233,0.12),rgba(255,255,255,0.9))] p-8 shadow-[0_30px_80px_rgba(15,23,42,0.12)] sm:p-12">
+        <div className="relative overflow-hidden rounded-4xl border border-(--ink)/10 bg-[linear-gradient(135deg,rgba(251,146,60,0.15),rgba(14,165,233,0.12),rgba(255,255,255,0.9))] p-8 shadow-[0_30px_80px_rgba(15,23,42,0.12)] sm:p-12">
           <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(251,146,60,0.35),transparent_70%)] blur-3xl" />
           <div className="absolute -bottom-24 left-[-10%] h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.2),transparent_70%)] blur-3xl" />
           <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -45,7 +45,7 @@ export const ContactSection = ({ id = "contact" }: ContactSectionProps) => {
               </a>
               <a
                 href={contact.cta.href}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-(--ink) px-5 py-3 text-sm font-semibold text-white transition hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-(--ink) px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
               >
                 {contact.cta.label}
                 <ArrowIcon className="h-4 w-4" aria-hidden="true" />

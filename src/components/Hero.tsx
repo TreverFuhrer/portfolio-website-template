@@ -42,7 +42,7 @@ export const Hero = ({ id = "top" }: HeroProps) => {
             <MotionItem className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href={hero.primaryCta.href}
-                className="inline-flex items-center gap-2 rounded-full bg-(--ink) px-6 py-3 text-sm font-semibold text-white transition hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
+                className="inline-flex items-center gap-2 rounded-full bg-(--ink) px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-2)"
               >
                 {hero.primaryCta.label}
                 <ArrowIcon className="h-4 w-4" aria-hidden="true" />
@@ -84,7 +84,7 @@ export const Hero = ({ id = "top" }: HeroProps) => {
             <div className="relative mx-auto w-full max-w-md">
               <div className="absolute -inset-8 rounded-[48px] bg-[radial-gradient(circle,rgba(251,146,60,0.28),transparent_70%)] blur-3xl" />
               <div className="absolute -right-10 top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.3),transparent_70%)] blur-2xl" />
-              <div className="relative overflow-hidden rounded-[32px] border border-(--ink)/10 bg-white/80 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur">
+              <div className="relative overflow-hidden rounded-4xl border border-(--ink)/10 bg-white/80 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur">
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-(--ink)/50">
                   <span>Portfolio card</span>
                   <span>{hero.badge}</span>
