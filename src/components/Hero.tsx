@@ -63,8 +63,8 @@ export const Hero = ({ id = "top" }: HeroProps) => {
           </div>
           <MotionItem className="relative">
             <div className="relative mx-auto w-full max-w-xl">
-              <div className="absolute -inset-6 rounded-[32px] bg-[radial-gradient(circle,rgba(20,184,166,0.25),transparent_60%)] blur-3xl" />
-              <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur">
+              <div className="absolute -inset-6 rounded-4xl bg-[radial-gradient(circle,rgba(20,184,166,0.25),transparent_60%)] blur-3xl" />
+              <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur">
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-white/50">
                   <span>Our principles</span>
                   <span>Built to last</span>
