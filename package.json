@@ -1,0 +1,40 @@
+{
+  "name": "saas-landing-page-template",
+  "version": "0.1.0",
+  "description": "landing page template for saas products",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "eslint . --fix"
+  },
+  "author": "Mudunuri Bhaskara Karthikeya Varma <karthikmudunuri999@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.24.10",
+    "lucide-react": "^0.562.0",
+    "next": "^16.1.1",
+    "react": "^19.2.3",
+    "react-dom": "^19",
+    "react-lottie": "^1.2.10",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^14.2.5",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-lottie": "^1.2.10",
+    "eslint": "^9",
+    "eslint-config-next": "^16.1.1",
+    "postcss": "^8",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5"
+  }
+}

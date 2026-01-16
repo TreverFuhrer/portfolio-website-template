@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Quick theme knobs so you can repaint the whole vibe fast. */
+:root {
+  --ink: #0b0f1a;
+  --surface: #0f172a;
+  --brand-1: #14b8a6;
+  --brand-2: #f97316;
+  --brand-3: #22d3ee;
+}
+
+body {
+  /* Swap the first font name if you want a different feel. */
+  font-family: var(--font-sans), "Space Grotesk", "Satoshi", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  background: var(--ink);
+  color: #e2e8f0;
+}
+
+/* Helps reduce jank by skipping offscreen rendering until needed. */
+.section-block {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.logo-marquee-track > ul {
+  flex-shrink: 0;
+}
+
+.logo-marquee:hover .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+}
+
+/* Keeps the layout centered even if Tailwind config isn't picked up. */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
