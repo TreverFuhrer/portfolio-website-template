@@ -1,10 +1,18 @@
-# Startup Landing Template
+# Portfolio Website Template
 
-A plug-and-play startup site with a company homepage and app-centric product pages. Edit `src/content/*` and deploy.
+A minimal, motion-forward portfolio template built with Next.js, Tailwind CSS, and Framer Motion. Edit the content files, deploy, and you have a clean, fast personal site ready for clients.
 
-Demo: https://startup-website-template-zeta.vercel.app/product/app
+Live demo: https://portfolio-website-template-iota.vercel.app/
 
-## Setup
+## Features
+
+- Single-page portfolio flow (Hero, About, Work, Capabilities, Experience, Contact)
+- Content-first setup via `src/content/*`
+- Smooth section reveal animations with reduced-motion support
+- Mobile-first layout and accessible focus states
+- Easy theme control using CSS variables
+
+## Quick start
 
 ```bash
 npm install
@@ -16,43 +24,28 @@ Open http://localhost:3000.
 
 ## Edit content (no component edits)
 
-- `src/content/site.ts` - brand, nav, socials, navbar config (anchors + product routes)
-- `src/content/company.ts` - homepage section order, hero copy, mission/pillars/vision, trust bar, hero visuals, featured product teaser, final CTA
-- `src/content/products.ts` - product list, product sub-nav, screenshots, and product page blocks
-- `src/content/pricing.ts` - pricing plans (used on product pages)
-- `src/content/faq.ts` - company FAQ (homepage)
-- `public/og/default.png` - default social image (set per product via `ogImage`)
-- `docs/ASSET_INVENTORY.md` - current asset list and sources policy
+- `src/content/portfolio.ts` - section copy, project cards, services, experience, contact details
+- `src/content/site.ts` - brand, nav labels, socials, navbar CTA, site URL
+- `public/og/default.png` - default social image
 
-Content is validated at build time. If something is missing, the build/dev server will throw a clear error.
+Content is validated at runtime; missing fields throw a clear error in dev/build.
 
-## Homepage structure
+## Sections
 
-Homepage sections are driven by `companyConfig.homepage.sections` in `src/content/company.ts`. Toggle sections on/off or reorder them there. Pricing is off by default on the homepage.
+Section order and visibility are driven by `portfolioConfig.homepage.sections` in `src/content/portfolio.ts`. Reorder or toggle sections there.
 
-## Product page navigation
+## Theming
 
-The product page includes a second sticky sub-nav under the main navbar. Configure it in `products[].page.nav` in `src/content/products.ts`. Each nav item must map to a section `id` used in the product blocks.
+Theme tokens live in `src/app/globals.css` under `:root`:
 
-## Add a product
+- `--ink`, `--paper`, `--surface`
+- `--brand-1`, `--brand-2`, `--brand-3`
 
-1. Add screenshots to `src/assets/images`.
-2. Add a product entry in `src/content/products.ts` with a unique `slug`, `ogImage`, and `screenshots`.
-3. Fill in `page` blocks and set `page.order` to the blocks you want to render.
-4. Update `page.nav` to match the block ids you want to link to.
-5. (Optional) Add a nav link in `src/content/site.ts` to `/product/<slug>`.
+Adjust the gradient background there to quickly change the overall mood.
 
-The homepage featured product and primary CTA use the first product in the array, so reorder if needed.
+## Motion
 
-## Assets
-
-All visuals come from local assets in `src/assets/images`. Asset roles are explicitly defined in content:
-
-- `companyConfig.heroVisual`
-- `companyConfig.homepage.featuredProduct.previewImage`
-- `products[].screenshots`
-
-If new assets are needed, follow the policy in `docs/ASSET_INVENTORY.md`.
+Section animations are defined in `src/components/motion/*` and applied via `MotionSection` and `MotionItem`. Respect for `prefers-reduced-motion` is built in.
 
 ## Deploy to Vercel
 
