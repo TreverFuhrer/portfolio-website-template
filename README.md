@@ -2,6 +2,10 @@
 
 A minimal, motion-forward portfolio template built with Next.js, Tailwind CSS, and Framer Motion. Edit the content files, deploy, and you have a clean, fast personal site ready for clients.
 
+### Hey Recruiters
+50% aura coded, so don't test me on anything in this repo :)
+Just made this to help others speed up the build process!
+
 Live demo: https://portfolio-website-template-iota.vercel.app/
 
 ## Features
